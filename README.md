@@ -3,29 +3,29 @@
 > **Platform:** Roblox (Luau)  
 > **Status:** Released
 
-## 📖 Proje Hakkında
-Darkness, A'dan Z'ye tek başıma (Solo Dev) geliştirdiğim, atmosferik bir bulmaca ve platform oyunudur. Bu projede sadece bölüm tasarımlarını değil; tüm oyun döngüsünü (Game Loop), veri yönetimini, UI animasyonlarını ve karakter mekaniklerini sıfırdan kodladım.
+## 📖 About the Project
+**Darkness** is an atmospheric puzzle and platformer game developed entirely as a **Solo Dev** project. I was responsible for the entire pipeline: from level design to scripting the core game loop, data management systems, UI animations, and character mechanics.
 
-## 🛠️ Teknik Yetkinlikler & Sistemler
-Bu projede kullanılan temel mimari ve sistemler:
+## 🛠️ Technical Systems & Architecture
+Key architectural patterns and systems I implemented in this project:
 
-### 1. Custom Movement & Raycasting (Fizik ve Matematik)
-Roblox'un standart hareket sistemi yerine, Grid tabanlı ve Raycasting destekli özel bir hareket mekaniği geliştirdim.
-- **Raycasting:** Oyuncunun mouse pozisyonunu 3D dünyada algılayıp, karakterin ("Cube") gideceği rotayı hesaplar.
-- **Vector Mathematics:** Karakterin yönelimini (Orientation) hesaplarken `CFrame.lookAt` ve Vektör manipülasyonları kullanılarak pürüzsüz dönüşler sağlanır.
-- **Pathfinding:** Hedef noktaya gidip gidemeyeceğini analiz eden mantıksal kontroller içerir.
+### 1. Custom Movement & Raycasting (Physics & Math)
+Instead of relying on standard Roblox movement, I engineered a grid-based movement system powered by Raycasting.
+- [cite_start]**Raycasting:** Calculates the character's path by projecting rays from the camera to the mouse position in 3D space[cite: 4].
+- [cite_start]**Vector Mathematics:** Utilizes `CFrame.lookAt` and Vector manipulation to handle character orientation logic dynamically[cite: 5, 6].
+- **Pathfinding Logic:** Includes checks to ensure valid movement targets on the grid.
 
 > **Code Highlight (`Move.lua`):**
-> *Fare hareketini algılayıp, küpün bir sonraki hamlesini hesaplayan Raycast mantığı:*
+> *Logic for calculating the next move using Raycasting and Orientation:*
 ```lua
--- Mouse pozisyonuna göre Raycasting işlemi ve yönelim (Orientation) hesaplaması
+-- Raycasting from camera to mouse position to determine movement target
 local cf = CFrame.new(CurrentStage.camera.Position, mousePos.Position)
 local ray = Ray.new(CurrentStage.camera.Position, cf.LookVector * 1000)
 local part, position = workspace:FindPartOnRayWithWhitelist(ray, CurrentStage.MainFloorParts:GetDescendants())
 
 if part then
-    -- Grid tabanlı hedef belirleme ve "FakeCube" ile ön hesaplama
+    -- Calculating the target grid position and "FakeCube" orientation
     hedef.Position = Vector3.new(mousePos.Position.X, block.Position.Y + 6.565, mousePos.Position.Z)
     FakeCube.CFrame = CFrame.lookAt(block.Position, Vector3.new(hedef.Position.X, hedef.Point.Position.Y, hedef.Position.Z))
-    -- ... (TweenService ile pürüzsüz dönüş animasyonları)
+    -- (Smooth transitions handled via TweenService)
 end
