@@ -27,9 +27,9 @@ event.OnServerEvent:Connect(function(player,mousePos)
 			local cf = CFrame.new(CurrentStage.camera.Position, mousePos.Position)
 			local ray = Ray.new(CurrentStage.camera.Position, cf.LookVector * 1000)
 			local part, position = workspace:FindPartOnRayWithWhitelist(ray, CurrentStage.MainFloorParts:GetDescendants())
-		--	print("hello")
+		
 			if part then
-			--	print("shit")
+			
 				hedef.Position = Vector3.new(mousePos.Position.X,block.Position.Y + 6.565,mousePos.Position.Z)
 
 				FakeCube.CFrame = CFrame.lookAt(block.Position,Vector3.new(hedef.Position.X,hedef.Point.Position.Y,hedef.Position.Z)+Vector3.new(0.1,0,0))
@@ -117,4 +117,5 @@ event.OnServerEvent:Connect(function(player,mousePos)
 
 		
 	end	
+
 end)
