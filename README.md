@@ -81,14 +81,12 @@ return Template
 ```
 
 ## 📂 Source Code
-
 You can explore the core scripts of the project in the root directory:
-
-* [Move.lua](https://www.google.com/search?q=./Move.lua) - Character movement physics and raycasting.
-* [ShopController.lua](https://www.google.com/search?q=./ShopController.lua) - 3D Shop system and inventory logic.
-* [MainGameStarted.lua](https://www.google.com/search?q=./MainGameStarted.lua) - Game loop and cinematic transitions.
-* [Template.lua](https://www.google.com/search?q=./Template.lua) - Data structure.
-
+- [Move.lua](Move.lua) - Character movement physics and raycasting.
+- [ShopController.lua](ShopController.lua) - 3D Shop system and inventory logic.
+- [MainGameStarted.lua](MainGameStarted.lua) - Game loop and cinematic transitions.
+- [Template.lua](Template.lua) - Data structure.
+  
 ```
 
 ```
